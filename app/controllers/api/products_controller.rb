@@ -1,7 +1,16 @@
 module Api
 
     class ProductsController < ApplicationController
-        skip_before_action :verify_authenticity_token
+
+        def index 
+            @products = Product.where('name= ?', 'telefon').order(created_at: :asc)
+            render json: @products    
+        end
+
+        def show
+          @product = Product.find(params[:id])
+          render json: @product
+        end
 
 
         def create
