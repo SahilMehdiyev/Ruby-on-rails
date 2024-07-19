@@ -18,6 +18,12 @@ module Api
 
         end    
 
+        def destroy
+            @product = Product.find(params['id'])
+            @product.destroy
+            render json: 'Urun silindi '
+        end    
+
 
         def product_params
             params.permit(:name, :description, :quantity, :price)
